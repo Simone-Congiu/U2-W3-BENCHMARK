@@ -44,3 +44,12 @@ fetch(URL + idAddress, {
   .catch((err) => {
     console.log(err);
   });
+
+
+
+  document.querySelector('footer').style.backgroundColor='#131921'
+
+
+let spanForYear=document.getElementById('year')
+let date=new Date
+spanForYear.innerHTML=date.getFullYear()

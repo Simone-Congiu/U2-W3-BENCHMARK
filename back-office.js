@@ -47,28 +47,74 @@ if (idAddress) {
       priceInput.value = product.price;
     })
     .catch((err) => {
-      console.log(err);
+      if(err===401){
+        console.log('Errore 401: non autorizzato')
+      }else if(err===402){
+        console.log('Errore 403: accesso negato')
+      }  else if(err===404){
+        console.log('Errore 40: Not Found')
+      }else if(err=400){
+        console.log('Errore 400: Richiesta non valida')
+      } else if(err=429){
+        console.log('Errore 429: troppe richieste')
+      } else if(err=500){
+        console.log('Errore: errore interno del server')
+      }
+      
+      else console.log(err)
     });
 
-  deleteB.addEventListener("click", () => {
+
+   let modalButton=document.getElementById('modalButton')
+   deleteB.classList.add('d-none')
+   modalButton.classList.remove('d-none')
+  let confirmDelete=document.getElementById('confirmButton')
+  confirmDelete.addEventListener('click',()=>{
+    
     fetch(URL + idAddress, {
-        method:'DELETE',
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGE3M2NkM2RhNTNjMTAwMTRhOTY4ZWEiLCJpYXQiOjE2ODg2ODE2ODMsImV4cCI6MTY4OTg5MTI4M30.t53WU5sEXgRuiZfgdn9_CqON91ODGKN2HFaYD7X1Sas",
-      },
-      })
-      .then((res)=>{
-        if(res.ok){
-            alert('PRODOTTO ELIMINATO')
-            location.assign('index.html')
-        }
-      })
-      .catch((err)=>{ 
-        console.log(err)
-      })
-})
+      method:'DELETE',
+    headers: {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGE3M2NkM2RhNTNjMTAwMTRhOTY4ZWEiLCJpYXQiOjE2ODg2ODE2ODMsImV4cCI6MTY4OTg5MTI4M30.t53WU5sEXgRuiZfgdn9_CqON91ODGKN2HFaYD7X1Sas",
+    },
+    })
+    .then((res)=>{
+      if(res.ok){
+          alert('PRODOTTO ELIMINATO')
+          location.assign('index.html')
+      }
+    })
+    .catch((err)=>{ 
+      if(err===401){
+        console.log('Errore 401: non autorizzato')
+      }else if(err===402){
+        console.log('Errore 403: accesso negato')
+      }  else if(err===404){
+        console.log('Errore 40: Not Found')
+      }else if(err=400){
+        console.log('Errore 400: Richiesta non valida')
+      } else if(err=429){
+        console.log('Errore 429: troppe richieste')
+      } else if(err=500){
+        console.log('Errore: errore interno del server')
+      }
+      
+      else console.log(err)
+    })
+
+    
+  })
+
+
+ 
 }
+  
+    
+    
+    
+    
+   
+
 
 let myForm = document.getElementById("product-form");
 console.log("product-form");
@@ -127,9 +173,32 @@ myForm.addEventListener("submit", (e) => {
 
         location.assign("index.html");
       } else {
+        throw new Error('')
       }
     })
     .catch((err) => {
-      console.log(err);
+      if(err===401){
+        console.log('Errore 401: non autorizzato')
+      }else if(err===402){
+        console.log('Errore 403: accesso negato')
+      }  else if(err===404){
+        console.log('Errore 40: Not Found')
+      }else if(err=400){
+        console.log('Errore 400: Richiesta non valida')
+      } else if(err=429){
+        console.log('Errore 429: troppe richieste')
+      } else if(err=500){
+        console.log('Errore: errore interno del server')
+      }
+      
+      else console.log(err)
+     
     });
 });
+
+document.querySelector('footer').style.backgroundColor='#131921'
+
+
+let spanForYear=document.getElementById('year')
+let date=new Date
+spanForYear.innerHTML=date.getFullYear()

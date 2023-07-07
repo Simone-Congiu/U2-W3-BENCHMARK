@@ -32,14 +32,14 @@ headers: {
     spinner.classList.add('d-none')
     product.forEach(el=>{
         let newCol=document.createElement('div')
-        newCol.classList.add('col','col-12','col-sm-6','col-md-4','col-lg-3','d-flex', "justify-content-center")
+        newCol.classList.add('col','col-12','col-sm-6','col-md-4','col-lg-3','d-flex', "justify-content-center",'hover')
         newCol.innerHTML=`<div class="card  rounded"  >
-        <img src=${el.imageUrl} class="card-img-top" alt="...">
+        <img src=${el.imageUrl} class="card-img-top hover-zoom" alt="...">
         <div class="card-body">
           <h5 class="card-title">${el.name}</h5>
-          <p class="card-text">${el.description}</p>
-          <p class="card-text">${el.brand}</p>
-          <p class="card-text">${el.price}€</p>
+          <p class="card-text fst-italic">${el.description}</p>
+          <p class="card-text fw-bold">${el.brand}</p>
+          <p class="card-text text-success">${el.price}€</p>
           <a href="detail.html?id=${el._id}" class="btn btn-primary">Scopri di più</a>
           <a href="back-office.html?id=${el._id}" class="btn btn-warning m-2">modifica</a>
 
@@ -56,6 +56,13 @@ headers: {
 })
 
 
-
 }
 getProductToApi()
+
+document.querySelector('footer').style.backgroundColor='#131921'
+
+
+let spanForYear=document.getElementById('year')
+let date=new Date
+spanForYear.innerHTML=date.getFullYear()
+
